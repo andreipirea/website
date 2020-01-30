@@ -1,0 +1,29 @@
+body{
+  position:relative;
+  height:100%;
+  margin: 0px;
+}
+
+.hero{
+  background-image: url('../assets/computer-desk.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom;
+  height:75vh;
+  background-repeat: no-repeat;
+  // width:100vw;
+  position: relative;
+  .overlay{
+    background-color: rgba(0,0,0,0.6);
+    height:100%;
+  }
+  .typical{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 39%;
+    p{
+      font-size: 38px;
+    }
+  }
+}

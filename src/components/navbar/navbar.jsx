@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './navbar.styles.scss'
+import './Navbar.scss'
 import {
   Collapse,
   Navbar,
@@ -21,7 +21,7 @@ const NavBar = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return(
-    <Navbar color="light" light expand="md">
+    <Navbar  expand="md" className='fixed-top'>
       <NavbarBrand href="/">reactstrap</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>

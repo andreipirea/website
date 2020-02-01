@@ -67,12 +67,12 @@ const TodoForm = () => {
               <CreateIcon style={{ color: green[500] }}/>
             </div>
           </div>
-            <Input
-            className="input-remove"
-            name="city"
-            disabled={true}
-            value={item}
-            />
+          <Input
+          className="input-remove"
+          name="city"
+          disabled={true}
+          value={item}
+          />
         </div>
       }
     </>

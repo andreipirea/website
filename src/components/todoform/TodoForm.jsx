@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TodoForm.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Container } from 'reactstrap'
 import Task from './Task'
-
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CreateIcon from '@material-ui/icons/Create';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
+import firebase from '../firebase/firebase'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,12 +19,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function useTasks() {
+  const [tasks, setTasks] = useState([])
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection('tasks')
+      .onSnapshot(snapshot => {
+        const newTasks = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setTasks(newTasks)
+      })
+  }, [])
+  return tasks
+}
+
 const TodoForm = () => {
+  const tasks = useTasks()
   const classes = useStyles();
-  // const [value, setValue] = React.useState('Controlled');
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [taskList, setTaskList] = useState([])
   const [taskID, setTaskID] = useState(null)
   const [editActive, setEditActive] = useState(false)
 
@@ -32,33 +49,58 @@ const TodoForm = () => {
     if (title === '' && content === '') {
       alert('Please fill in the fields!')
     } else {
-      setTaskList([...taskList, <Task title={title} content={content} />])
-      setTitle('')
-      setContent('')
+      firebase
+        .firestore()
+        .collection('tasks')
+        .add({
+          title,
+          content
+        })
+        .then(() => {
+          setTitle('')
+          setContent('')
+        })
     }
     e.preventDefault()
   };
 
   const handleClear = e => {
-    setTaskList([])
-    setEditActive(false)
+    tasks.map(task => {
+
+      firebase
+          .firestore()
+          .collection('tasks')
+          .doc(task.id)
+          .delete()
+          .then(function() {
+            console.log("Document successfully deleted!");
+          }).catch(function(error) {
+              console.error("Error removing document: ", error);
+          });
+    })
+
     e.preventDefault()
   }
 
-  const handleDelete = index => {
-    const deleteItem = [...taskList]
-    delete deleteItem[index]
-    setTaskList(deleteItem)
+  const handleDelete = id => {
+    firebase
+        .firestore()
+        .collection('tasks')
+        .doc(id)
+        .delete()
+        .then(function() {
+          console.log("Document successfully deleted!");
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+        
   }
 
-  const findItem = idx => {
-    const chosenItem = [...taskList]
-    
-    const specificItem = chosenItem[idx]
-    setTitle(specificItem.props.title)
-    setContent(specificItem.props.content)
-    
-    setTaskID(idx)    
+  const findItem = task => {
+    setTitle(task.title)
+    setContent(task.content)
+
+    setTaskID(task.id)
     setEditActive(true)
   }
 
@@ -66,35 +108,44 @@ const TodoForm = () => {
     if (title === '' && content === '') {
       alert('Please fill in the fields!')
     } else {
-      taskList.splice(taskID, 1, <Task title={title} content={content} />)
-      setTaskList([...taskList])
-      setTitle('')
-      setContent('')
+      firebase
+        .firestore()
+        .collection('tasks')
+        .doc(taskID)
+        .update({
+          title: title,
+          content: content
+        })
+        .then(() => {
+          setTitle('')
+          setContent('')
+        })
     }
-    console.log('task list edit item', taskList)
     setEditActive(false)
     e.preventDefault()
   }
 
-  const showTasks = taskList.map((item, index) => (
-    <>
-      {item !== undefined && item !== null &&
+  const showTasks =  tasks.map(task => (
 
-        <div className='task' id={index} key={index}>
-          <div>
-            <div className='trash' onClick={() => handleDelete(index)}>
-              <DeleteForeverIcon style={{ color: red[500] }} />
-            </div>
-            <div className='pen' onClick={() => findItem(index)}>
-              <CreateIcon style={{ color: green[500] }} />
-            </div>
+      <div className='task' id={task.id} key={task.id}>
+        <div>
+          <div className='trash' >
+            <DeleteForeverIcon style={{ color: red[500] }} onClick={() => handleDelete(task.id)} />
           </div>
-          {item}
+          <div className='pen' onClick={() => findItem(task)}>
+            <CreateIcon style={{ color: green[500] }} />
+          </div>
         </div>
-      }
-    </>
-  )
-  )
+        <div className='list-item'>
+          <div>
+            <h6 className='title'>{task.title}</h6>
+            <p>{task.content}</p>
+          </div>
+        </div>
+      </div>
+    ))
+
+
 
   return (
     <div className="taskform-container">
@@ -129,20 +180,28 @@ const TodoForm = () => {
                 Edit Task
               </button>
             ) : (
-              <button
-                className="btn add-task-btn"
-                onClick={handleAddTask}
-              >
-                Add Task
+                <button
+                  className="btn add-task-btn"
+                  onClick={handleAddTask}
+                >
+                  Add Task
               </button>
-            )}
+              )}
 
             <button
               className="btn clear-btn"
-              onClick={handleClear}
-            >Clear</button>
+              onClick={() => handleClear()}
+            >
+              Clear
+            </button>
             <div className='list'>
-              {showTasks}
+              {
+                tasks.length ? (
+                  showTasks
+                ) : (
+                  <div className="no-tasks">No Tasks</div>
+                )
+              }
             </div>
           </form>
         </div>

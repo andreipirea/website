@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import "./TodoForm.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import {Container} from 'reactstrap'
+import { Container } from 'reactstrap'
 import Task from './Task'
-import {Input} from 'reactstrap'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CreateIcon from '@material-ui/icons/Create';
 import { green } from '@material-ui/core/colors';
@@ -19,28 +18,31 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
+
 const TodoForm = () => {
   const classes = useStyles();
   // const [value, setValue] = React.useState('Controlled');
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [taskList, setTaskList] = useState([])
-  const [formDisabled, setFormDisabled] = useState(false)
+  const [taskID, setTaskID] = useState(null)
+  const [editActive, setEditActive] = useState(false)
 
   const handleAddTask = e => {
-    if(title === '' && content === ''){
+    if (title === '' && content === '') {
       alert('Please fill in the fields!')
-    }else{
-    setTaskList([...taskList, <Task title={title} content={content} />])
-    setTitle('')
-    setContent('')
+    } else {
+      setTaskList([...taskList, <Task title={title} content={content} />])
+      setTitle('')
+      setContent('')
     }
     e.preventDefault()
-    console.log(taskList)
   };
 
   const handleClear = e => {
     setTaskList([])
+    setEditActive(false)
     e.preventDefault()
   }
 
@@ -50,33 +52,49 @@ const TodoForm = () => {
     setTaskList(deleteItem)
   }
 
-  const enalbeForm = e => {
-    
+  const findItem = idx => {
+    const chosenItem = [...taskList]
+
+    const specificItem = chosenItem[idx]
+    setTitle(specificItem.props.title)
+    setContent(specificItem.props.content)
+
+    setTaskID(idx)
+    setEditActive(true)
+  }
+
+  const handleEditTask = e => {
+    if (title === '' && content === '') {
+      alert('Please fill in the fields!')
+    } else {
+      taskList.splice(taskID, 1, <Task title={title} content={content} />)
+      setTaskList([...taskList])
+      setTitle('')
+      setContent('')
+    }
+    console.log('task list edit item', taskList)
+    setEditActive(false)
     e.preventDefault()
   }
 
   const showTasks = taskList.map((item, index) => (
     <>
       {item !== undefined && item !== null &&
+
         <div className='task' id={index} key={index}>
           <div>
             <div className='trash' onClick={() => handleDelete(index)}>
-              <DeleteForeverIcon style={{ color: red[500]}} />
+              <DeleteForeverIcon style={{ color: red[500] }} />
             </div>
-            <div className='pen' onClick={() => enalbeForm(index)}>
-              <CreateIcon style={{ color: green[500] }}/>
+            <div className='pen' onClick={() => findItem(index)}>
+              <CreateIcon style={{ color: green[500] }} />
             </div>
           </div>
-          <Input
-          className="input-remove"
-          name="city"
-          disabled={true}
-          value={item}
-          />
+          {item}
         </div>
       }
     </>
-    )
+  )
   )
 
   return (
@@ -104,18 +122,34 @@ const TodoForm = () => {
               variant="outlined"
               onChange={e => setContent(e.target.value)}
             />
+            {editActive ? (
+              <button
+                className="btn add-task-btn"
+                onClick={handleEditTask}
+              >
+                Edit Task
+              </button>
+            ) : (
+                <button
+                  className="btn add-task-btn"
+                  onClick={handleAddTask}
+                >
+                  Add Task
+              </button>
+              )}
+
             <button
-              className="btn add-task-btn"
-              onClick={handleAddTask}
-            >
-              Add Task
-            </button>
-            <button 
               className="btn clear-btn"
-              onClick={handleClear}  
+              onClick={handleClear}
             >Clear</button>
             <div className='list'>
-              {showTasks}
+              {
+                showTasks.length ? (
+                  showTasks
+                ) : (
+                    <div className="no-tasks">No Tasks</div>
+                  )
+              }
             </div>
           </form>
         </div>

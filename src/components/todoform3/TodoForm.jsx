@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./TodoForm.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Container } from 'reactstrap'
+import Task from './Task'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CreateIcon from '@material-ui/icons/Create';
 import { green } from '@material-ui/core/colors';
@@ -16,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
-// let taskList = []
+
+
 
 const TodoForm = () => {
   const classes = useStyles();
@@ -27,57 +29,35 @@ const TodoForm = () => {
   const [taskID, setTaskID] = useState(null)
   const [editActive, setEditActive] = useState(false)
 
-  useEffect(() => {
-    const data = localStorage.getItem('tasks', JSON.stringify('tasks'))
-    
-    if(data){
-      setTaskList(JSON.parse(data))
-    }
-
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(taskList))
-  })
-
-
   const handleAddTask = e => {
     if (title === '' && content === '') {
       alert('Please fill in the fields!')
     } else {
-
-      let taskObj = {title: title, content: content }
-      taskList.push(taskObj)
-      localStorage.setItem('tasks', JSON.stringify(taskList))
-      
+      setTaskList([...taskList, <Task title={title} content={content} />])
       setTitle('')
       setContent('')
     }
     e.preventDefault()
   };
 
-
-
   const handleClear = e => {
     setTaskList([])
-    localStorage.setItem('tasks', null)
     setEditActive(false)
     e.preventDefault()
   }
 
-  const handleDelete = (id) => {
-    let deletedItem = [...taskList]
-    deletedItem.splice(id, 1)
-    setTaskList(deletedItem)
-  } 
-
+  const handleDelete = index => {
+    const deleteItem = [...taskList]
+    delete deleteItem[index]
+    setTaskList(deleteItem)
+  }
 
   const findItem = idx => {
     const chosenItem = [...taskList]
 
     const specificItem = chosenItem[idx]
-    setTitle(specificItem.title)
-    setContent(specificItem.content)
+    setTitle(specificItem.props.title)
+    setContent(specificItem.props.content)
 
     setTaskID(idx)
     setEditActive(true)
@@ -87,8 +67,7 @@ const TodoForm = () => {
     if (title === '' && content === '') {
       alert('Please fill in the fields!')
     } else {
-      let taskObj = {title: title, content: content }
-      taskList.splice(taskID, 1, taskObj)
+      taskList.splice(taskID, 1, <Task title={title} content={content} />)
       setTaskList([...taskList])
       setTitle('')
       setContent('')
@@ -101,22 +80,17 @@ const TodoForm = () => {
   const showTasks = taskList.map((item, index) => (
     <>
       {item !== undefined && item !== null &&
+
         <div className='task' id={index} key={index}>
           <div>
-            <div className='trash' >
-              <DeleteForeverIcon style={{ color: red[500] }} onClick={() => handleDelete(index)} />
+            <div className='trash' onClick={() => handleDelete(index)}>
+              <DeleteForeverIcon style={{ color: red[500] }} />
             </div>
-            <div className='pen'>
-              <CreateIcon style={{ color: green[500] }} onClick={() => findItem(index)}/>
+            <div className='pen' onClick={() => findItem(index)}>
+              <CreateIcon style={{ color: green[500] }} />
             </div>
           </div>
-          <div className='list-item'>
-            <div>
-              <h6 className='title'>{item.title}</h6>
-              <p>{item.content}</p>
-            </div>
-
-          </div>
+          {item}
         </div>
       }
     </>
@@ -151,7 +125,7 @@ const TodoForm = () => {
             {editActive ? (
               <button
                 className="btn add-task-btn"
-              onClick={handleEditTask}
+                onClick={handleEditTask}
               >
                 Edit Task
               </button>
@@ -166,7 +140,7 @@ const TodoForm = () => {
 
             <button
               className="btn clear-btn"
-            onClick={handleClear}
+              onClick={handleClear}
             >Clear</button>
             <div className='list'>
               {

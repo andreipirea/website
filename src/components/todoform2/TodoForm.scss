@@ -1,21 +1,21 @@
-.makeStyles-root-1{
+// .makeStyles-root-1{
 
-  .MuiTextField-root{
-    width:90%!important;
-    background-color: #1d222b;
-    border: 1px solid #444;
-    border-radius: 20px;
-    .MuiOutlinedInput-root{
-      border-radius: 20px;
-    }
-    .MuiInputLabel-outlined{
-      color: #ccc;
-    }
-    .MuiInputBase-input{
-      color: #ccc;
-    }
-  }
-}
+//   .MuiTextField-root{
+//     width:90%!important;
+//     background-color: #1d222b;
+//     border: 1px solid #444;
+//     border-radius: 20px;
+//     .MuiOutlinedInput-root{
+//       border-radius: 20px;
+//     }
+//     .MuiInputLabel-outlined{
+//       color: #ccc;
+//     }
+//     .MuiInputBase-input{
+//       color: #ccc;
+//     }
+//   }
+// }
 
 .app-wrapper{
   background-color: #292f38;
@@ -35,6 +35,9 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     outline: none;
     cursor: pointer;
+  }
+  .edit{
+    background-color: #117a0d;
   }
   .clear-btn {
     width: 100px;

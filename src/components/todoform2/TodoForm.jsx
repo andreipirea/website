@@ -12,11 +12,43 @@ const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: 200
-    }
+      width: 200,
+      width:'90%',
+      backgroundColor: '#1d222b',
+      border: '1px solid #444',
+      borderRadius: '20px',
+      },
+     "& .MuiOutlinedInput-root":{
+        borderRadius: '20px'
+      },
+      "& .MuiInputLabel-outlined": {
+        color: '#ccc'
+      },
+      "& .MuiInputBase-input": {
+        color: '#ccc'
+      }
   }
 }));
-// let taskList = []
+
+
+
+  // const MuiTextFieldRoot = {
+  //   width:'90%',
+  //   backgroundColor: '#1d222b',
+  //   border: '1px solid #444',
+  //   borderRadius: '20px'
+  // }
+  // const MuiOutlinedInputRoot = {
+  //   borderRadius: '20px'
+  // }
+  // const MuiInputLabelOutlined = {
+  //   color: '#ccc'
+  // }
+  // const MuiInputBaseInput = {
+  //     color: '#ccc'
+  // }
+  
+
 
 const TodoForm = () => {
   const classes = useStyles();
@@ -69,6 +101,9 @@ const TodoForm = () => {
     let deletedItem = [...taskList]
     deletedItem.splice(id, 1)
     setTaskList(deletedItem)
+    setTitle('')
+    setContent('')
+    setEditActive(false)
   } 
 
 
@@ -130,6 +165,7 @@ const TodoForm = () => {
           <form className={classes.root} noValidate autoComplete="off">
             <h1>Task Manager</h1>
             <TextField
+              
               id="outlined-textarea"
               label="Title"
               placeholder="Write your tile here"
@@ -150,7 +186,7 @@ const TodoForm = () => {
             />
             {editActive ? (
               <button
-                className="btn add-task-btn"
+                className="btn add-task-btn edit"
               onClick={handleEditTask}
               >
                 Edit Task

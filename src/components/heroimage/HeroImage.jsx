@@ -19,7 +19,7 @@ const HeroImage = () => {
           <Row>
             <Col className='typical text-center text-white' sm="12">
               <p>
-                Resposive Web Design
+                React Web Application
                 {<Typical
                   loop={Infinity}
                   steps={[

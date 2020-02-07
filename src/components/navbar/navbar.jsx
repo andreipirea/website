@@ -7,12 +7,9 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  NavLink
 } from 'reactstrap';
+import {Link} from 'react-router-dom'
 
 
 const NavBar = () => {
@@ -22,29 +19,15 @@ const NavBar = () => {
 
   return(
     <Navbar  expand="md" className='fixed-top'>
-      <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Link to='/'>
+        <NavbarBrand >andrei pirea</NavbarBrand>
+      </Link>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink href="/">Components</NavLink>
+              <Link to='/taskmanager'>Task Manager</Link>
           </NavItem>
-          <NavItem>
-            <NavLink href="">
-              GitHub
-            </NavLink>
-          </NavItem>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Options
-            </DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
         </Nav>
         {/* <NavbarText>Simple Text</NavbarText> */}
       </Collapse>

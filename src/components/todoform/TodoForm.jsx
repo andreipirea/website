@@ -174,7 +174,7 @@ const TodoForm = () => {
             />
             {editActive ? (
               <button
-                className="btn add-task-btn"
+                className="btn add-task-btn edit"
                 onClick={handleEditTask}
               >
                 Edit Task

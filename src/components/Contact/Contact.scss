@@ -1,0 +1,19 @@
+.contact-section{
+  height:75vh;
+  .contact-container{
+    margin-top: 6vh;
+    h2{
+      margin-top: 28px;
+    }
+  }
+  .incons-col{
+    margin-bottom: 15px;
+    .icons{
+      display: inline-block;
+      padding-left: 58px;
+      p{
+        font-size: 22px;
+      }
+    }
+  }
+}

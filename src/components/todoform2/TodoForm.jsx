@@ -7,12 +7,12 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CreateIcon from '@material-ui/icons/Create';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
+import Footer from '../Footer/Footer'
 
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: 200,
       width:'90%',
       backgroundColor: '#1d222b',
       border: '1px solid #444',
@@ -30,24 +30,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
-  // const MuiTextFieldRoot = {
-  //   width:'90%',
-  //   backgroundColor: '#1d222b',
-  //   border: '1px solid #444',
-  //   borderRadius: '20px'
-  // }
-  // const MuiOutlinedInputRoot = {
-  //   borderRadius: '20px'
-  // }
-  // const MuiInputLabelOutlined = {
-  //   color: '#ccc'
-  // }
-  // const MuiInputBaseInput = {
-  //     color: '#ccc'
-  // }
-  
 
 
 const TodoForm = () => {
@@ -159,6 +141,7 @@ const TodoForm = () => {
   )
 
   return (
+    <>
     <div className="taskform-container">
       <Container className="text-center">
         <div className="app-wrapper">
@@ -217,6 +200,8 @@ const TodoForm = () => {
         </div>
       </Container>
     </div>
+    <Footer/>
+    </>
   );
 };
 

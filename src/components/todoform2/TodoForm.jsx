@@ -8,6 +8,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import Footer from '../Footer/Footer'
+import NavBar from '../navbarTM/Navbar'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -142,6 +143,7 @@ const TodoForm = () => {
 
   return (
     <>
+    <NavBar />
     <div className="taskform-container">
       <Container className="text-center">
         <div className="app-wrapper">

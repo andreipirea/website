@@ -79,8 +79,8 @@ export default function FullWidthTabs() {
   };
 
   return (
-    <div className={classes.root}>
-      <h2>Projects</h2>
+    <div className={classes.root} id='presentation'>
+      <h2>Brief Presentation</h2>
       <AppBar position="static" color="default">
         <Tabs
           value={value}

@@ -13,7 +13,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
+// import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 
 const NavBar = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,40 +44,7 @@ const NavBar = props => {
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <LinkScroll
-              activeClass="active"
-              to="hero-image"
-              spy={true}
-              smooth={true}
-              offset={-55}
-              duration={500}
-            >
-              Home
-            </LinkScroll>
-          </NavItem>
-          <NavItem>
-            <LinkScroll
-              activeClass="active"
-              to="about"
-              spy={true}
-              smooth={true}
-              offset={-55}
-              duration={500}
-            >
-              About
-            </LinkScroll>
-          </NavItem>
-          <NavItem>
-            <LinkScroll
-              activeClass="active"
-              to="presentation"
-              spy={true}
-              smooth={true}
-              offset={-55}
-              duration={500}
-            >
-              Presentation
-            </LinkScroll>
+            <Link to="/" exact>Home</Link>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
@@ -89,18 +56,6 @@ const NavBar = props => {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
-          <NavItem>
-            <LinkScroll
-              activeClass="active"
-              to="contact"
-              spy={true}
-              smooth={true}
-              offset={-55}
-              duration={500}
-            >
-              Contact
-            </LinkScroll>
-          </NavItem>
         </Nav>
         {/* <NavbarText>Simple Text</NavbarText> */}
       </Collapse>

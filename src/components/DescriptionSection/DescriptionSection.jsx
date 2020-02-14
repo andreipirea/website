@@ -11,7 +11,7 @@ const DescriptionSection = () => {
   const toggle = () => setIsOpen(!isOpen);
   return (
 
-    <div className="description-section">
+    <div className="description-section" id='about'>
       <div className="overlay">
         <Container className="text-center">
           <h2>About Us</h2>

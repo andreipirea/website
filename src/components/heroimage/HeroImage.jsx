@@ -13,7 +13,7 @@ const HeroImage = () => {
 
   return(
     <div>
-      <div className='hero'>
+      <div className='hero'id='hero-image'>
         <div className='overlay'>
         <Container>
           <Row>

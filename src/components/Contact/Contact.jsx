@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
+import { TextareaAutosize } from "@material-ui/core";
 
 
 
@@ -14,44 +15,44 @@ import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 
 // ###############################################################################################
 
-// "use strict";
-const nodemailer = require("nodemailer");
+// // "use strict";
+// const nodemailer = require("nodemailer");
 
-// async..await is not allowed in global scope, must use a wrapper
-async function main() {
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  let testAccount = await nodemailer.createTestAccount();
+// // async..await is not allowed in global scope, must use a wrapper
+// async function main() {
+//   // Generate test SMTP service account from ethereal.email
+//   // Only needed if you don't have a real mail account for testing
+//   let testAccount = await nodemailer.createTestAccount();
 
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass // generated ethereal password
-    }
-  });
+//   // create reusable transporter object using the default SMTP transport
+//   let transporter = nodemailer.createTransport({
+//     host: "smtp.ethereal.email",
+//     port: 587,
+//     secure: false, // true for 465, false for other ports
+//     auth: {
+//       user: testAccount.user, // generated ethereal user
+//       pass: testAccount.pass // generated ethereal password
+//     }
+//   });
 
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "andrei.pirea@mail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>" // html body
-  });
+//   // send mail with defined transport object
+//   let info = await transporter.sendMail({
+//     from: '"Fred Foo 👻" <foo@example.com>', // sender address
+//     to: "andrei.pirea@mail.com", // list of receivers
+//     subject: "Hello ✔", // Subject line
+//     text: "Hello world?", // plain text body
+//     html: "<b>Hello world?</b>" // html body
+//   });
 
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+//   console.log("Message sent: %s", info.messageId);
+//   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-}
+//   // Preview only available when sending through an Ethereal account
+//   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+//   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+// }
 
-main().catch(console.error);
+// main().catch(console.error);
 
 // ###############################################################################################
 
@@ -98,31 +99,39 @@ const Contact = () => {
             </div>
           </Col>
           <Col className='text-center' sm-6>
-            <form className={classes.root} noValidate autoComplete="off">
+            <form className={classes.root} noValidate autoComplete="off" name='contact' method='POST' data-netlify='true'>
               <TextField
                 id="outlined-basic"
                 label="Name"
                 variant="outlined"
+                type='text'
+                name='name'
               />
               <TextField
                 id="outlined-basic"
                 label="Email"
                 variant="outlined"
+                type='email'
+                name='email'
               />
               <TextField
                 id="outlined-basic"
                 label="Phone"
                 variant="outlined"
+                type='text'
+                name='phone'
               />
-              <TextField
+              <TextareaAutosize
                 id="outlined-multiline-static"
                 label="Message"
                 placeholder="Write your content here"
                 multiline
                 rows="4"
                 variant="outlined"
+                name='message'
               />
               <Button
+                type='submit'
                 variant="contained"
                 color="primary"
                 className={classes.button}

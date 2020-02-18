@@ -7,13 +7,27 @@
     }
   }
   .incons-col{
-    margin-bottom: 15px;
+    top:35px;
     .icons{
+      position:relative;
       display: inline-block;
-      padding-left: 58px;
+      padding-left: 100px;
+      padding-right:73px;
       p{
         font-size: 22px;
       }
+    }
+  }
+  form{
+    margin-top: 80px;
+    .MuiFormControl-root {
+      width:100%;
+      margin-bottom: 41px;
+    }
+    button{
+      width:100%;
+      background-color: #3f51b5;
+      font-size: 25px;
     }
   }
 }

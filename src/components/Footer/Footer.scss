@@ -8,6 +8,10 @@
     padding:30px 10px 20px 10px;
     color:white;
     margin-top: 20px;
+    cursor: pointer;
+    &:hover{
+      color:blue
+    }
   }
   p{
     color:#808080;

@@ -5,6 +5,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import { Link as LinkScroll, animateScroll as scroll } from "react-scroll"
 
 
 const Footer = () => {
@@ -16,10 +17,46 @@ const Footer = () => {
             
           </Col>
           <Col className='text-center' sm-6>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Projects</a>
-            <a href="#">Contact</a>
+          <LinkScroll
+              activeClass="active"
+              to="hero-image"
+              spy={true}
+              smooth={true}
+              offset={-55}
+              duration={500}
+            >
+              Home
+            </LinkScroll>
+            <LinkScroll
+              activeClass="active"
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={-55}
+              duration={500}
+            >
+              About
+            </LinkScroll>
+            <LinkScroll
+              activeClass="active"
+              to="presentation"
+              spy={true}
+              smooth={true}
+              offset={-55}
+              duration={500}
+            >
+              Presentation
+            </LinkScroll>
+            <LinkScroll
+              activeClass="active"
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-55}
+              duration={500}
+            >
+              Contact
+            </LinkScroll>
           </Col>
           <Col className='text-center' sm-3>
             

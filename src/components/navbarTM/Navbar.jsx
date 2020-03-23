@@ -54,6 +54,9 @@ const NavBar = props => {
               <DropdownItem>
                 <Link to="/taskmanager">Task Manager</Link>
               </DropdownItem>
+              <DropdownItem>
+                <Link to="/weather">Weather</Link>
+              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

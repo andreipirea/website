@@ -1,0 +1,10 @@
+.back_navbar{
+  position:absolute;
+  width: 98px;
+  height:98px;
+  z-index: 100;
+  .MuiSvgIcon-root{
+    font-size:6rem;
+    background-color: rgba(0, 0, 0, 0.5)!important;
+  }
+}

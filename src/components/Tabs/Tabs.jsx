@@ -102,30 +102,30 @@ export default function FullWidthTabs() {
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <Row>
-            <Col md-4>
+            <Col >
               <img src={Project1} alt=""/>
             </Col>
-            <Col md-8>
+            <Col >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas magnam vel fugit provident? Enim aliquam consectetur aperiam nobis voluptas saepe deserunt minima quod pariatur quaerat mollitia ratione, temporibus porro ea in perspiciatis vero recusandae quibusdam. Veniam sint architecto sit, nihil optio soluta. Fugiat in veniam cum quis ad quos! Cupiditate, perspiciatis. In ipsa exercitationem doloribus deserunt facere totam voluptatibus iure earum, consequatur tempore quisquam nesciunt a aspernatur, laudantium fugit esse sunt vel placeat est voluptates sed velit. Illo doloribus repellat id corrupti unde vitae quia molestias est facere maxime magni dolore dicta soluta tempora sapiente, voluptate vel hic quidem! Nemo.
             </Col>
           </Row>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
         <Row>
-            <Col md-4>
+            <Col >
               <img src={Project2} alt=""/>
             </Col>
-            <Col md-8>
+            <Col >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas magnam vel fugit provident? Enim aliquam consectetur aperiam nobis voluptas saepe deserunt minima quod pariatur quaerat mollitia ratione, temporibus porro ea in perspiciatis vero recusandae quibusdam. Veniam sint architecto sit, nihil optio soluta. Fugiat in veniam cum quis ad quos! Cupiditate, perspiciatis. In ipsa exercitationem doloribus deserunt facere totam voluptatibus iure earum, consequatur tempore quisquam nesciunt a aspernatur, laudantium fugit esse sunt vel placeat est voluptates sed velit. Illo doloribus repellat id corrupti unde vitae quia molestias est facere maxime magni dolore dicta soluta tempora sapiente, voluptate vel hic quidem! Nemo.
             </Col>
           </Row>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
         <Row>
-            <Col md-4>
+            <Col >
               <img src={Project1} alt=""/>
             </Col>
-            <Col md-8>
+            <Col >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas magnam vel fugit provident? Enim aliquam consectetur aperiam nobis voluptas saepe deserunt minima quod pariatur quaerat mollitia ratione, temporibus porro ea in perspiciatis vero recusandae quibusdam. Veniam sint architecto sit, nihil optio soluta. Fugiat in veniam cum quis ad quos! Cupiditate, perspiciatis. In ipsa exercitationem doloribus deserunt facere totam voluptatibus iure earum, consequatur tempore quisquam nesciunt a aspernatur, laudantium fugit esse sunt vel placeat est voluptates sed velit. Illo doloribus repellat id corrupti unde vitae quia molestias est facere maxime magni dolore dicta soluta tempora sapiente, voluptate vel hic quidem! Nemo.
             </Col>
           </Row>

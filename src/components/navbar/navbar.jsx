@@ -35,11 +35,10 @@ const NavBar = props => {
   return (
     <Navbar
       expand="md"
-      className={scrolled ? "fixed-top navbar-white" : "fixed-top"}
+      className={scrolled ? "fixed-top navbar_dark" : "fixed-top"}
     >
-      <Link to="/">
-        <NavbarBrand>andrei pirea</NavbarBrand>
-      </Link>
+
+      <NavbarBrand>andrei pirea</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
@@ -79,7 +78,7 @@ const NavBar = props => {
               Presentation
             </LinkScroll>
           </NavItem>
-          <UncontrolledDropdown nav inNavbar>
+          {/* <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
               Projects
             </DropdownToggle>
@@ -91,7 +90,7 @@ const NavBar = props => {
                 <Link to="/weather">Weather</Link>
               </DropdownItem>
             </DropdownMenu>
-          </UncontrolledDropdown>
+          </UncontrolledDropdown> */}
           <NavItem>
             <LinkScroll
               activeClass="active"

@@ -5,7 +5,7 @@ import {WeatherContext} from '../../context/WeatherContext'
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import NavBar from '../navbarTM/Navbar'
+import BackNavBar from '../BackNavBar/BackNavBar'
 import Footer from '../Footer/Footer'
 
 const useStyles = makeStyles(theme => ({
@@ -128,7 +128,7 @@ const Weather = () => {
 
   return (
     <>
-      <NavBar />
+      <BackNavBar />
       <div className="weather_wrapper text-center">
         <div className="overlay">
           <div className="weather_data ">
@@ -153,7 +153,7 @@ const Weather = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   )
 }

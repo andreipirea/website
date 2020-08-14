@@ -25,7 +25,7 @@ import {
 const HeroImage = () => {
 
   return (
-    <div>
+    <>
       <div className='hero' id='hero-image'>
         <div className='overlay'>
           <Container>
@@ -62,7 +62,7 @@ const HeroImage = () => {
           </Container>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

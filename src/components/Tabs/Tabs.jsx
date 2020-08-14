@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: "70%",
-    height: '82vh',
+    height: '89vh',
     margin: 'auto',
     paddingTop:'50px',
     paddingBottom:'50px',
